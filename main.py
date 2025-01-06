@@ -62,9 +62,10 @@ player = pygame.image.load('assets/astronaut.png').convert_alpha()
 bg_image = pygame.image.load('assets/space.png').convert_alpha()
 bg_image = pygame.transform.scale(bg_image, (400, 600)) 
 platform_image = pygame.image.load('assets/land.png').convert_alpha()
-#bird spritesheet
-bird_sheet_img = pygame.image.load('assets/enemy.png').convert_alpha()
-bird_sheet = SpriteSheet(bird_sheet_img)
+
+#enemy spritesheet
+enemy_sheet_img = pygame.image.load('assets/enemy.png').convert_alpha()
+enemy_sheet = SpriteSheet(enemy_sheet_img)
 
 
 #function for outputting text onto the screen
@@ -76,12 +77,16 @@ def draw_text(text, font, text_col, x, y):
 def draw_panel():
 	pygame.draw.rect(screen, BLACK, (0, 0, SCREEN_WIDTH, 30))
 	draw_text('SCORE: ' + str(score), font_small, WHITE, 0, 0)
+	text_surface = font_small.render('HIGH SCORE: ' + str(high_score), True, WHITE)
+	text_width = text_surface.get_width()
+	draw_text('HIGH SCORE: ' + str(high_score), font_small, WHITE, SCREEN_WIDTH - text_width, 0)
 
 
 #function for drawing the background
 def draw_bg(bg_scroll):
 	screen.blit(bg_image, (0, 0 + bg_scroll))
 	screen.blit(bg_image, (0, -600 + bg_scroll))
+
 
 #player class
 class Player():
@@ -225,7 +230,7 @@ while run:
 
 		#generate enemies
 		if len(enemy_group) == 0 and score > 1500:
-			enemy = Enemy(SCREEN_WIDTH, 100, bird_sheet, 1.5)
+			enemy = Enemy(SCREEN_WIDTH, 100, enemy_sheet, 1.5)
 			enemy_group.add(enemy)
 
 		#update enemies
@@ -235,9 +240,11 @@ while run:
 		if scroll > 0:
 			score += scroll
 
-		#draw line at previous high score
-		pygame.draw.line(screen, WHITE, (0, score - high_score + SCROLL_THRESH), (SCREEN_WIDTH, score - high_score + SCROLL_THRESH), 3)
-		draw_text('HIGH SCORE', font_small, WHITE, SCREEN_WIDTH - 130, score - high_score + SCROLL_THRESH)
+
+		#I comment This code because this maybe feel confusing for to Student to understand the code instead of this I put the the HIGH SCORE in the panel on the top of the screen function Name : draw_panel()
+    
+		# pygame.draw.line(screen, WHITE, (0, score - high_score + SCROLL_THRESH), (SCREEN_WIDTH, score - high_score + SCROLL_THRESH), 3)
+		# draw_text('HIGH SCORE', font_small, WHITE, SCREEN_WIDTH - 130, score - high_score + SCROLL_THRESH)
 
 		#draw sprites
 		platform_group.draw(screen)
