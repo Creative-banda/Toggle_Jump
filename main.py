@@ -3,10 +3,10 @@ import pygame
 import random
 import os
 from pygame import mixer
-from spritesheet import SpriteSheet
+# from spritesheet import SpriteSheet
 from enemy import Enemy
 
-#initialise pygame
+#initialise pygamea
 mixer.init()
 pygame.init()
 
@@ -64,8 +64,8 @@ bg_image = pygame.transform.scale(bg_image, (400, 600))
 platform_image = pygame.image.load('assets/land.png').convert_alpha()
 
 #enemy spritesheet
-enemy_sheet_img = pygame.image.load('assets/enemy.png').convert_alpha()
-enemy_sheet = SpriteSheet(enemy_sheet_img)
+# enemy_sheet_img = pygame.image.load('assets/enemy.png').convert_alpha()
+# enemy_sheet = SpriteSheet(enemy_sheet_img)
 
 
 #function for outputting text onto the screen
@@ -230,7 +230,7 @@ while run:
 
 		#generate enemies
 		if len(enemy_group) == 0 and score > 1500:
-			enemy = Enemy(SCREEN_WIDTH, 100, enemy_sheet, 1.5)
+			enemy = Enemy(SCREEN_WIDTH, 100, 1.5)
 			enemy_group.add(enemy)
 
 		#update enemies
