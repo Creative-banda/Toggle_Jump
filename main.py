@@ -3,7 +3,6 @@ import pygame
 import random
 import os
 from pygame import mixer
-# from spritesheet import SpriteSheet
 from enemy import Enemy
 
 #initialise pygamea
@@ -63,11 +62,6 @@ bg_image = pygame.image.load('assets/space.png').convert_alpha()
 bg_image = pygame.transform.scale(bg_image, (400, 600)) 
 platform_image = pygame.image.load('assets/land.png').convert_alpha()
 
-#enemy spritesheet
-# enemy_sheet_img = pygame.image.load('assets/enemy.png').convert_alpha()
-# enemy_sheet = SpriteSheet(enemy_sheet_img)
-
-
 #function for outputting text onto the screen
 def draw_text(text, font, text_col, x, y):
 	img = font.render(text, True, text_col)
@@ -86,7 +80,6 @@ def draw_panel():
 def draw_bg(bg_scroll):
 	screen.blit(bg_image, (0, 0 + bg_scroll))
 	screen.blit(bg_image, (0, -600 + bg_scroll))
-
 
 #player class
 class Player():
@@ -152,11 +145,13 @@ class Player():
 
 		return scroll
 
+
 	def draw(self):
 		screen.blit(pygame.transform.flip(self.image,self.flip, False), (self.rect.x - 12, self.rect.y - 5))
 
 #platform class
 class Platform(pygame.sprite.Sprite):
+    
 	def __init__(self, x, y, width, moving):
 		pygame.sprite.Sprite.__init__(self)
 		self.image = pygame.transform.scale(platform_image, (width, 10))
@@ -240,12 +235,6 @@ while run:
 		if scroll > 0:
 			score += scroll
 
-
-		#I comment This code because this maybe feel confusing for to Student to understand the code instead of this I put the the HIGH SCORE in the panel on the top of the screen function Name : draw_panel()
-    
-		# pygame.draw.line(screen, WHITE, (0, score - high_score + SCROLL_THRESH), (SCREEN_WIDTH, score - high_score + SCROLL_THRESH), 3)
-		# draw_text('HIGH SCORE', font_small, WHITE, SCREEN_WIDTH - 130, score - high_score + SCROLL_THRESH)
-
 		#draw sprites
 		platform_group.draw(screen)
 		enemy_group.draw(screen)
@@ -294,8 +283,7 @@ while run:
 				#create starting platform
 				platform = Platform(SCREEN_WIDTH // 2 - 50, SCREEN_HEIGHT - 50, 100, False)
 				platform_group.add(platform)
-
-
+    
 	#event handler
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
@@ -306,8 +294,7 @@ while run:
 					file.write(str(high_score))
 			run = False
 
-
 	#update display window
 	pygame.display.update()
 
-pygame.quit()
+pygame.quit()   
