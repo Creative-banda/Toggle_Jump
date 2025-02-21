@@ -36,8 +36,11 @@ class Enemy(pygame.sprite.Sprite):
 
         # select starting image and create rectangle from it
         if len(self.animation_list) > 0:
-            self.image = self.animation_list[self.frame_index]
-            self.rect = self.image.get_rect()
+            try:
+                self.image = self.animation_list[self.frame_index]
+                self.rect = self.image.get_rect()
+            except:
+                pass
         else:
             print("No images loaded for enemy animation!")
             # Create a default red rectangle if no images are loaded
