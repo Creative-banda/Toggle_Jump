@@ -17,22 +17,22 @@ class Enemy(pygame.sprite.Sprite):
             self.flip = False
 
         # load images from folder
-            for i in range(8):  # Assuming 8 images named 1.png through 8.png
-                img_path = os.path.join('assets/enemy', f'{i+1}.png')
-                try:
-                    image = pygame.image.load(img_path).convert_alpha()
-                    # Scale the image
-                    width = int(image.get_width() * scale)
-                    height = int(image.get_height() * scale)
-                    image = pygame.transform.scale(image, (width, height))
-                    image = pygame.transform.rotate(image, -90)
-                    # Flip if needed
-                    if self.flip:
-                        image = pygame.transform.flip(image, True, False)
-                    self.animation_list.append(image)
-                except pygame.error as e:
-                    print(f"Couldn't load image {img_path}: {e}")
-                    continue
+        for i in range(8):  # Assuming 8 images named 1.png through 8.png
+            img_path = os.path.join('assets/enemy', f'{i+1}.png')
+            try:
+                image = pygame.image.load(img_path).convert_alpha()
+                # Scale the image
+                width = int(image.get_width() * scale)
+                height = int(image.get_height() * scale)
+                image = pygame.transform.scale(image, (width, height))
+                image = pygame.transform.rotate(image, -90)
+                # Flip if needed
+                if self.flip:
+                    image = pygame.transform.flip(image, True, False)
+                self.animation_list.append(image)
+            except pygame.error as e:
+                print(f"Couldn't load image {img_path}: {e}")
+                continue
 
         # select starting image and create rectangle from it
         if len(self.animation_list) > 0:

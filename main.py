@@ -4,12 +4,10 @@ import random
 import os
 from pygame import mixer
 from enemy import Enemy
-import pathlib
 #initialise pygamea
 mixer.init()
 pygame.init()
 
-current_path = pathlib.Path().absolute()
 
 
 #game window dimensions
@@ -26,12 +24,12 @@ clock = pygame.time.Clock()
 FPS = 60
 
 #load music and sounds
-pygame.mixer.music.load(str(current_path)+'/assets/bg_music.mp3')
+pygame.mixer.music.load('assets/bg_music.mp3')
 pygame.mixer.music.set_volume(0.6)
 pygame.mixer.music.play(-1, 0.0)
-jump_fx = pygame.mixer.Sound(str(current_path)+'/assets/jump.mp3')
+jump_fx = pygame.mixer.Sound('assets/jump.mp3')
 jump_fx.set_volume(0.5)
-death_fx = pygame.mixer.Sound(str(current_path)+'/assets/death.mp3')
+death_fx = pygame.mixer.Sound('assets/death.mp3')
 death_fx.set_volume(0.5)
 
 
@@ -61,10 +59,10 @@ font_small = pygame.font.SysFont('Lucida Sans', 20)
 font_big = pygame.font.SysFont('Lucida Sans', 24)
 
 #load images
-player = pygame.image.load(str(current_path) + '/assets/astronaut.png').convert_alpha()
-bg_image = pygame.image.load(str(current_path) + '/assets/space.png').convert_alpha()
+player = pygame.image.load('assets/astronaut.png').convert_alpha()
+bg_image = pygame.image.load('assets/space.png').convert_alpha()
 bg_image = pygame.transform.scale(bg_image, (SCREEN_WIDTH, SCREEN_HEIGHT)) 
-platform_image = pygame.image.load(str(current_path) + '/assets/land.png').convert_alpha()
+platform_image = pygame.image.load('assets/land.png').convert_alpha()
 
 #function for outputting text onto the screen
 def draw_text(text, font, text_col, x, y):
